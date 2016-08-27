@@ -60,7 +60,7 @@ dataSystemHour    <- subset(subset(subset(subset(subset(dataSystem, year == "201
 #dataSystemMonthSum   <- ddply(subset(dataSystem, year == "2015"), c("month"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
 #dataSystemWeekSum    <- ddply(subset(subset(dataSystem, year == "2015"), month == "Jul"), c("week"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
 #dataSystemWeekdaySum <- ddply(subset(subset(dataSystem, year == "2015"), month == "Jul"), c("weekday"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
-#dataSystemDaySum     <- ddply(subset(subset(subset(dataSystem, year == "2015"), month == "Jul"), week == "28"), c("weekday", "day"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
+dataSystemDaySum     <- ddply(subset(subset(subset(dataSystem, year == "2015"), month == "Jul"), week == "28"), c("weekday", "day"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
 #dataSystemHourSum    <- ddply(subset(subset(subset(subset(dataSystem, year == "2015"), month == "Jul"), week == "28"), weekday == "Thu" & day == "16"), c("hour"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
 
 ## Train KNN model without time factor
@@ -100,10 +100,19 @@ dataTrain <- knn(dataSystemDay[1:(0.6*nrow(dataSystemDay)), ], ceiling(sqrt(nrow
 
 ## Communicate result
 
-# Code to summaries load
-ddply(subset(subset(subset(dataTrain, c("hour"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
+# Code to summaries load and forecast
+ddply(dataTrain, .(as.factor(condition)), summarise,
+      blackout = sum(abs(measurement - 0) < 1e-6),
+      sum = (sum(measurement) * (max(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")])- min(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")]))) + min(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")]),
+      mean = (mean(measurement) * (max(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")])- min(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")]))) + min(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")]),
+      max  = (max(measurement) * (max(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")])- min(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")]))) + min(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")]),
+      min  = (min(measurement) * (max(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")])- min(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")]))) + min(dataSystemDay[1:(0.6*nrow(dataSystemDay)), c("load")]),
+      sd   = sd(measurement),
+      se   = sd / sqrt(length(measurement))
+)
 # Code to visualise trend based on time factor
 ggplot(dataTrain, aes(n, measurement, group=condition, colour=condition)) + geom_line()
-# Code to summarise forecast
+# Code to visualise distribution on time factor
+ggplot(dataTrain, aes(x=measurement, fill=condition)) + geom_histogram(binwidth=.5, alpha=.5, position="identity")
 
 
