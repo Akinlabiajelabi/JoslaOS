@@ -55,14 +55,6 @@ dataSystemWeekday <- subset(subset(subset(dataSystem, year == "2015"), month == 
 dataSystemDay     <- subset(subset(subset(subset(dataSystem, year == "2015"), month == "Jul"), week == "28"), weekday == "Thu" & day == "16")
 dataSystemHour    <- subset(subset(subset(subset(subset(dataSystem, year == "2015"), month == "Jul"), week == "28"), weekday == "Thu" & day == "16"), hour == "12")
 
-# Code to summarise data based on time factor
-#dataSystemYearSum    <- ddply(dataSystem, c("year"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
-#dataSystemMonthSum   <- ddply(subset(dataSystem, year == "2015"), c("month"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
-#dataSystemWeekSum    <- ddply(subset(subset(dataSystem, year == "2015"), month == "Jul"), c("week"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
-#dataSystemWeekdaySum <- ddply(subset(subset(dataSystem, year == "2015"), month == "Jul"), c("weekday"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
-dataSystemDaySum     <- ddply(subset(subset(subset(dataSystem, year == "2015"), month == "Jul"), week == "28"), c("weekday", "day"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
-#dataSystemHourSum    <- ddply(subset(subset(subset(subset(dataSystem, year == "2015"), month == "Jul"), week == "28"), weekday == "Thu" & day == "16"), c("hour"), summarise, blackout = sum(abs(load - 0) < 1e-6), mean = sum(load) / (length(load)-blackout), sd = sd(load), se = sd / sqrt(length(load)-blackout))
-
 ## Train KNN model without time factor
 
 # Code to forecast next hour load
