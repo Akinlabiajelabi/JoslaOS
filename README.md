@@ -1,11 +1,16 @@
-# Josla 
+# JoslaOS
 
-## Overview
-Smart grid applications to help stakeholders of an electric power utility reduce time, effort and cost in carrying out maintenance operations with aim for improved system efficiency, service reliability and business sustainability.
+## Prompt
+Develop an electric power utility platform-as-a-service application for supply-side operations. Platform should integrate seamlessly with proprietary micro electro mechanical systems (MEMS) that captures key parameters within an electric power utility.
 
-The applications are deployed using Amazon Web Services and is copyright of Josla Electric Company Ltd.
+## Background
 
-## Developers 
+## Value Proposition
 
-- Akinlabi Ajelabi (Data Scientist)
+## Technology Review
 
+## Developer 
+
+- Akinlabi Ajelabi (Data Scientist, Josla)
+
+## Workflow
