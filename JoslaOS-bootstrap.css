@@ -1,0 +1,146 @@
+#header {
+	background-image: url("https://s3-us-west-2.amazonaws.com/joslaelectric.com/images/home-header.jpg");
+	background-size: cover;
+	background-position: 50% 50%;
+	margin-bottom: 20px;
+}
+
+#header > .navbar {
+	margin-bottom: 0px;
+	padding-top: 20px;
+	background:transparent;
+	border: 0px;
+}
+
+#header > .navbar > .container > .navbar-header > .navbar-brand {
+	font-size: 200%;
+	color: white;
+}
+
+#header > .container >.jumbotron {
+	background: transparent;
+	color: white;
+	padding-right: 0px;
+}
+
+#service {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+#model {
+	background-color: #898989;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+#model > .container > .well {
+	background: transparent;
+	border: 0px;
+}
+
+#model > .container > .well > h2 {
+	color: white;
+	margin-top:50px;
+}
+
+#model > .container > .well > .row {
+	margin-top:20px;
+}
+
+#model > .container > .well > p {
+	color: white;
+	margin-top:20px;
+}
+
+#team {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+#footer {
+	background-color: #3d3d3d;
+}
+
+#footer > .container > .well {
+	background: transparent;
+	margin:top: 50px;
+	border: 0px;
+	color: white;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #387A36;
+    color: #b8b8b8;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #387A36;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #387A36;
+    box-shadow: none;
+}
+
+.btn.outline {
+	background: none;
+	padding: 12px 22px;
+}
+
+.btn-primary.outline {
+	border: 2px solid #387A36;
+	color: #387A36;
+}
+
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+	color: #b8b8b8;
+	border-color: #b8b8b8;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+	border-color: #3d3d3d;
+	color: #3d3d3d;
+	box-shadow: none;
+}
+
+#login > .container > .row {
+	margin-top: 100px;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 220px;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 220px;
+}
+#footer > .container {
+	margin-bottom: 0px;
+}
+#footer > .navbar {
+	margin-top: 0px;
+	border-radius: 0 !important;
+	  -moz-border-radius: 0 !important;
+}
